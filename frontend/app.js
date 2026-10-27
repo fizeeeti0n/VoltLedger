@@ -105,7 +105,7 @@
     showError("");
     if (file.size > 10 * 1024 * 1024) return showError("File too large (limit 10 MB).");
     $("#loading").hidden = false;
-    const wait = setTimeout(() => { $("#loadingText").textContent = "Waking the server (free hosting sleeps when idle, this can take up to a minute)..."; }, 5000);
+    const wait = setTimeout(() => { $("#loadingText").textContent = "Generating the Report"; }, 5000);
     const fd = new FormData(); fd.append("file", file);
     try {
       const res = await api("/api/analyze", { method: "POST", body: fd });
