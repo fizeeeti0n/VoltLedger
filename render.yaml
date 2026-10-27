@@ -1,0 +1,23 @@
+# Render Blueprint: deploys the FastAPI backend.
+# Dashboard: New + > Blueprint > pick this repo.
+services:
+  - type: web
+    name: voltledger-api
+    runtime: python
+    plan: free            # free = sleeps after 15 min idle (about 1 min cold start); saved accounts/reports reset on restart
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: VOLT_SECRET
+        generateValue: true   # random signing key for login tokens
+      # --- To KEEP accounts and saved reports: switch `plan` to a paid plan, then uncomment ---
+      # - key: VOLT_DB
+      #   value: /var/data/voltledger.db
+    # disk:
+    #   name: voltledger-data
+    #   mountPath: /var/data
+    #   sizeGB: 1

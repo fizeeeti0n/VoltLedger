@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VoltLedger - Electricity  report</title>
+<meta name="description" content="Upload your DPDC or DESCO prepaid ledger and get a seasonal consumption report and Excel workbook in seconds.">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="/"><span class="bolt">&#9889;</span> VoltLedger</a>
+    <nav id="nav"></nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="hero">
+    <h1>Your electricity bill, explained by season.</h1>
+    <p class="lead">Upload your DPDC or DESCO prepaid vending ledger. Get summer, rainy and winter consumption plus a ready Excel report in seconds.</p>
+    <div id="drop" class="drop" tabindex="0" role="button" aria-label="Upload ledger file">
+      <input id="file" type="file" accept=".pdf,.csv,.xlsx,.xlsm" hidden>
+      <div class="drop-icon">&#128193;</div>
+      <strong>Drop your ledger here</strong>
+      <span>or click to choose a PDF, CSV or XLSX (max 10 MB)</span>
+    </div>
+    <p class="privacy">Your original file is parsed in memory and never stored. Sign in only if you want to save reports.</p>
+    <div id="error" class="alert err" hidden></div>
+    <div id="loading" class="loading" hidden><span class="spin"></span> <span id="loadingText">Reading your ledger...</span></div>
+  </section>
+
+  <section id="results" hidden></section>
+  <section id="saved" hidden></section>
+</main>
+
+<dialog id="authDlg">
+  <form method="dialog" id="authForm">
+    <h2 id="authTitle">Sign in</h2>
+    <label>Email<input id="email" type="email" autocomplete="email" required></label>
+    <label>Password<input id="password" type="password" autocomplete="current-password" minlength="8" required></label>
+    <div id="authErr" class="alert err" hidden></div>
+    <div class="row">
+      <button type="submit" class="btn primary" id="authSubmit">Sign in</button>
+      <button type="button" class="btn ghost" id="authCancel">Cancel</button>
+    </div>
+    <p class="muted"><a href="#" id="authSwitch">Create an account</a></p>
+  </form>
+</dialog>
+
+<footer class="wrap foot">
+  Spending (Tk) is used as a proxy for consumption; ledgers show Taka, not kWh. Not affiliated with DPDC or DESCO.
+</footer>
+
+<script src="/static/vendor/chart.umd.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>
